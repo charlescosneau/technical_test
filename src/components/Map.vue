@@ -2,21 +2,14 @@
 import { onMounted } from 'vue';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl';
-import restaurants from '@/json/restaurants';
+import restaurants from '@/../public/json/restaurants';
 
-function mapRender() {
-  mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmxlc2Nvc25lYXUiLCJhIjoiY2t6b2ZjYWpxMzgzMzJ1b2NweDVrMHpzaSJ9.T0lsMUbrV6kiaeBjA8wl3w';
-  const map = new mapboxgl.Map({
-  container: 'Mapbox',
-  style: 'mapbox://styles/mapbox/streets-v11',
-  center: [2.423085, 48.863374],
-  zoom: 11
-  });
 
+function bordersRender(map: mapboxgl.Map) {
   map.on('load', () => {
     map.addSource('borders', {
       type: 'geojson',
-      data: ''
+      data: 'http://localhost:3000/json/borders.json'
     });
 
     map.addLayer({
@@ -38,20 +31,28 @@ function mapRender() {
         'line-width': 3
       }
     });
-
   })
+}
 
+function restaurantsMarker(map: mapboxgl.Map) {
   restaurants.forEach((restaurant: { lng: number; lat: number; }) => {
     const marker = new mapboxgl.Marker()
       .setLngLat([restaurant.lng, restaurant.lat])
       .addTo(map);
   })
-
 }
 
 
 onMounted(() => {
-  mapRender();
+  mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmxlc2Nvc25lYXUiLCJhIjoiY2t6b2ZjYWpxMzgzMzJ1b2NweDVrMHpzaSJ9.T0lsMUbrV6kiaeBjA8wl3w';
+  const map = new mapboxgl.Map({
+    container: 'Mapbox',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [2.423085, 48.863374],
+    zoom: 11
+  });
+  bordersRender(map);
+  restaurantsMarker(map);
 })
 
 

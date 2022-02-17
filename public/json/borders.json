@@ -1,15 +1,14 @@
 {
-  type: 'FeatureCollection',
-  name: 'LaMeuse',
-  crs: { type: 'name', properties: { name: 'urn:ogc:def:crs:OGC:1.3:CRS84' } },
-  features: [
+  "type": "FeatureCollection",
+  "name": "LaMeuse",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+  "features": [
     {
-      type: 'Feature',
-      // eslint-disable-next-line @typescript-eslint/camelcase
-      properties: { code_insee: '55', nom: 'Meuse', nuts3: 'FR412', wikipedia: 'fr:Meuse (d�partement)' },
-      geometry: {
-        type: 'MultiPolygon',
-        coordinates: [
+      "type": "Feature",
+      "properties": { "code_insee": "55", "nom": "Meuse", "nuts3": "FR412", "wikipedia": "fr:Meuse (d�partement)" },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
           [
             [
               [5.464712384731442, 48.425659401071066],
