@@ -13,6 +13,7 @@ import MapVue from './components/Map.vue';
 
 #app {
   width: 100vw;
+  height: 100vh;
   font-weight: normal;
 }
 </style>
